@@ -1,0 +1,7 @@
+# Example .gitignore
+__pycache__/
+*.py[cod]
+venv/
+mining-env/
+*.swp
+*.swo
