@@ -1,37 +1,44 @@
-name: Mining Stock Analysis CI
+name: Python Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11']
+
     steps:
-    - uses: actions/checkout@v4  # Updated from v2
-    - name: Set up Python
-      uses: actions/setup-python@v5  # Updated from v2
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: ${{ matrix.python-version }}
+    
     - name: Install dependencies
       run: |
-        python -m venv mining-env
-        source mining-env/bin/activate
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
+        
+    - name: Create cache directory
+      run: |
+        mkdir -p ~/.cache/mining_analysis
+        
     - name: Run tests
       run: |
-        source mining-env/bin/activate
-        python -m unittest discover tests
-    - name: Generate report
-      run: |
-        source mining-env/bin/activate
-        python src/main.py
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4  # Updated from v2
+        python -m pytest tests/ -v
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      if: success() || failure()
       with:
-        name: report
-        path: report.md
-        retention-days: 90  # Specify how long to retain the artifact
+        name: test-results-${{ matrix.python-version }}
+        path: |
+          test-results/
+          .coverage

@@ -3,3 +3,6 @@ numpy
 matplotlib
 requests
 yfinance
+requests-cache
+requests-ratelimiter
+pyrate-limiter
