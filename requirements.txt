@@ -6,3 +6,5 @@ yfinance
 requests-cache
 requests-ratelimiter
 pyrate-limiter
+pytest
+pytest-cov
