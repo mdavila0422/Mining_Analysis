@@ -1,20 +1,23 @@
 # Mining Stock Analysis Tool 📊
 
 ## Overview
-A Python-based analysis tool for evaluating mining stocks using public financial APIs. This tool provides comprehensive analysis of operational factors, financial health, geographic risks, and market positions of mining companies.
+A Python-based analysis tool for evaluating mining stocks using public financial APIs. This tool provides comprehensive analysis of financial metrics using publicly available data.
 
 ## Features
-- **Operational Analysis**
+### Current Features
+- **Financial Analysis**
+  - Balance sheet strength indicators
+  - Cash flow analysis
+  - Dividend yield assessment
+  - Financial ratios and metrics
+
+### Planned Features
+- **Operational Analysis** (On Hold - Awaiting Data Source)
   - Mining costs analysis (cash costs, AISC)
   - Asset quality assessment
   - Production profile evaluation
 
-- **Financial Analysis**
-  - Balance sheet strength indicators
-  - Cash flow analysis
-  - Hedging strategy assessment
-
-- **Risk Assessment**
+- **Risk Assessment** (On Hold - Awaiting Data Source)
   - Geographic/Political risk evaluation
   - Infrastructure access analysis
   - Market position assessment
@@ -46,15 +49,14 @@ source mining-env/bin/activate
 pip install -r requirements.txt
 ```
 
-## Usage
-[Will be updated with specific usage instructions as the project develops]
-
 ## Project Structure
 ```
 mining-stocks-analyzer/
 ├── src/
 │   ├── data/
 │   │   ├── sources/
+│   │   │   ├── __init__.py
+│   │   │   └── financial_source.py
 │   │   └── models.py
 │   ├── analysis/
 │   │   ├── analyzer.py
@@ -62,8 +64,6 @@ mining-stocks-analyzer/
 │   ├── visualization/
 │   │   └── dashboards.py
 │   └── main.py
-├── notebooks/
-│   └── exploratory-analysis.ipynb
 ├── tests/
 ├── requirements.txt
 └── README.md
@@ -79,8 +79,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Martin Davila
 - GitHub: [@mdavila0422](https://github.com/mdavila0422)
 
-## Acknowledgments
-- List any resources, libraries, or people you'd like to acknowledge
-
 ## Project Status
 🚧 Under Development
+
+### Development Notes
+- Currently focused on financial analysis using YFinance API
+- Mining-specific operational data integration is pending identification of suitable data source
+- Potential future data sources being evaluated for operational metrics
